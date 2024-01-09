@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+    laravel:
+        image: public.ecr.aws/m7e8v1y7/zenrise-development:php56
+        container_name: expensas-api
+        ports:
+            - "8090:80"
+        volumes:
+            - .:/var/www/html
+    db:
+        image: mysql:5.7
+        container_name: expensas-api_db
+        volumes:
+            - ./db:/var/lib/mysql
+        ports:
+            - "3396:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: db
+            MYSQL_USER: local
+            MYSQL_PASSWORD: local
